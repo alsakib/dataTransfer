@@ -1,0 +1,162 @@
+<meta charset="UTF-8">
+
+<script type="text/javascript">
+
+	var language = "en";
+	//Dictionary
+	//{ key : "keyId", value : [ "en", "lo" ]},
+	var translation = [];
+
+
+	jQuery(document).ready(function () {
+
+		$("#period1").select2();
+		//get langue du user
+		//$.get( "../api/me/profile", function( json ) {
+		json = {
+			id: "M5zQapPyTZI",
+			username: "admin",
+			firstName: "admin",
+			surname: "admin",
+			settings: {
+				keyDbLocale: null,
+				keyMessageSmsNotification: "false",
+				keyUiLocale: "fr",
+				keyAnalysisDisplayProperty: "name",
+				keyMessageEmailNotification: "false",
+			},
+		};
+		language = json.settings.keyUiLocale;
+		loadDialogPeriod(language);
+		//});
+	});
+
+
+	function loadDialogPeriod(language) {
+		//var today = new Date();
+		//var yyyy = today.getFullYear();
+		//var typePeriod = "Weekly";
+		load_period(typePeriod, yyyy, language);
+		$("#peType").change(function () {
+			typePeriod = $(this).val();
+			load_period(typePeriod, yyyy, language);
+			$("#peValue").show();
+			$("#selectedOptsPE").html($("#period1 option:selected").map(function () { return this.text }).get().join(";"));
+			//selectedOptionsPE = $("#period1 option:selected").val();
+			selectedOptionsPE = $("#period1 option:selected").map(function () { return this.value }).get().join(";");
+		});
+		$('#preYear').click(function () {
+			yyyy--;
+			load_period(typePeriod, yyyy, language);
+		});
+		$('#nextYear').click(function () {
+			yyyy++;
+			load_period(typePeriod, yyyy, language);
+		});
+		$('#period1').change(function () {
+			console.log('change', typePeriod);
+			//selectedOptionsPE = $("#period1 option:selected").val();
+			periodGet = $("#period1 option:selected").map(function () { return this.value }).get().join(";");
+
+			var fmt = '';
+			var format2 = '';
+			var typepSelect = '';
+
+			$("#selectedOptsPE").html($("#period1 option:selected").map(function () { return this.text }).get().join(";"));
+
+			if (typePeriod == 'Daily') { fmt = "YYYYMMDD", format2 = "day", typepSelect = 'd' }
+			if (typePeriod == 'Weekly') { fmt = "YYYY[W]W", format2 = "week", typepSelect = 'w' }
+			if (typePeriod == 'Monthly') { fmt = "YYYYMM", format2 = "month", typepSelect = 'M' }
+			if (typePeriod == 'Quarterly') { fmt = "YYYY[Q]Q", format2 = "quarterly", typepSelect = 'Q' }
+			if (typePeriod == 'Yearly') { fmt = "YYYY", format2 = "year", typepSelect = 'Y' }
+			var occur = 1;
+			var dateStart = moment(periodGet.substring(0, 4), 'YYYY').startOf('year').add(1, 'days');
+			var dateEnd = moment(periodGet, fmt).endOf(format2).add(1, 'days');
+			console.log(dateStart.format('YYYY MM DD') + ' ' + dateEnd.format('YYYY MM DD'));
+			var periodsArray2 = [];
+
+			while (dateStart <= dateEnd) {
+				//console.log('dateStart ', dateStart)
+				periodsArray2.push(dateStart.format(fmt));
+				// console.log('dateStart',typepSelect, dateStart.format('YYYY MM DD'));  
+				dateStart.add(occur, typepSelect);
+			}
+			console.log('periodsArray2 ', periodsArray2);
+
+			selectedOptionsPE = periodsArray2.map(function (e) { return e }).join(";");
+			console.log('selectedOptionsPE: ' + selectedOptionsPE);
+			//runAnalytics(selectedOptionsOU,selectedOptionsPE, 1);
+		});
+	}
+
+	//Chargement du Combobox apres selection du type period
+	function generatePeriods(startDate, endDate, typep, occur, format, formatFull) {
+		$("#period1").text("");
+
+		var periodsArray = [];
+		// var dateStart = moment();
+		var dateStart = moment(startDate);
+		var dateEnd = moment(endDate);
+		while (dateStart <= dateEnd) {
+			//	console.log('dateStart', dateStart.format('YYYY-MM-DD'))
+			periodsArray.push(dateStart.format(format));
+			//console.log('dateStart',typep, dateStart.format('YYYY MM DD'));  
+			var selectObject = dateStart.clone();
+			$("#period1").append("<option value='" + selectObject.format(format) + "'>" + selectObject.format(formatFull) + "" + "</option>");
+			dateStart.add(occur, typep);
+		}
+		console.log('periodsArray', periodsArray);
+		//console.log('periodsArrayLength', periodsArray.length);
+
+		return periodsArray
+	};
+	//generatePeriods ('2020-01-01', '2020-12-31', 'W', 'YYYY[W]W', 'YYYY[W]W');
+
+	function load_period(type, yyyy, language) {
+		var pStart = moment(yyyy, 'YYYY').format("YYYY-MM-DD");
+		var pEnd = moment(pStart).add(1, 'years').add(-1, 'days').format("YYYY-MM-DD");
+		//console.log('load_period',pStart,pEnd);
+		if (type == 'Daily') { generatePeriods(pStart, pEnd, 1, 'd', 'YYYYMMDD', 'DD MMMM YYYY'); }
+		if (type == 'Weekly') { generatePeriods(pStart, pEnd, 'w', 1, 'YYYY[W]W', 'YYYY [W]W'); }
+		if (type == 'Monthly') { generatePeriods(pStart, pEnd, 'M', 1, 'YYYYMM', 'MMMM YYYY'); }
+		if (type == 'Quarterly') { generatePeriods(pStart, pEnd, 'Q', 1, 'YYYY[Q]Q', 'YYYY [Q]Q'); }
+		if (type == 'Yearly') { generatePeriods(pStart, moment(pStart).add(5, 'Y'), 1, 'Y', 'YYYY', 'YYYY'); }
+		if (type == 'BiMonthly') { generatePeriods(pStart, pEnd, 2, 'M', 'YYYYMM[B]', 'MMMM-MMMM YYYY'); }
+		if (type == 'SixMonthly') { generatePeriods(pStart, pEnd, 6, 'M', 'YYYY[S]S', '[S]S YYYY'); }
+		if (type == 'SixMonthlyApril') { generatePeriods(pStart, pEnd, 6, 'M', 'YYYYMMDD', 'DD MMMM YYYY'); }
+		if (type == 'FinancialOctober') { generatePeriods(pStart, moment(pStart).add(5, 'Y'), 1, 'Y', 'YYYY', 'YYYY'); }
+		if (type == 'FinancialJuly') { generatePeriods(pStart, moment(pStart).add(5, 'Y'), 1, 'Y', 'YYYY', 'YYYY'); }
+		if (type == 'FinancialApril') { generatePeriods(pStart, moment(pStart).add(5, 'Y'), 1, 'Y', 'YYYY', 'YYYY'); }
+	};
+
+
+	//code pour integrer la valeur selectionné
+	var period = $("#period1").val();
+	$("#selectedOptsPE").html($("#period1 option:selected").map(function () { return this.text }).get().join(";"));
+	selectedOptionsPE = $("#period1 option:selected").map(function () { return this.value }).get().join(";");
+
+		//productSelected =$("#metaChoosen option:selected").map(function(){ return this.value }).get().join('"},{"id":"');
+
+</script>
+<div id="dialog" style=" max-width:300px; ">
+	<form>
+		<p class="select_period_type">Periode:</p>
+		<select class="browser-default custom-select hidden" name="peType" id="peType">
+			<option selected>Select period</option>
+			<option value="Daily">Daily</option>
+			<option value="Weekly">Weekly</option>
+			<option value="Monthly">Monthly</option>
+			<option value="Quarterly">Quarterly</option>
+			<option value="Yearly">Yearly</option>
+		</select>
+
+		<span id="peValue">
+			<div class="form" class="form-inline" style='width:90%;'>
+				<select class="select2" data-placeholder="Select period" style='width:60%;' id="period1">
+				</select>
+				<input type="button" id="preYear" value="&nbsp;«&nbsp;" />
+				<input type="button" id="nextYear" value="&nbsp;»&nbsp;" />
+			</div>
+		</span>
+	</form>
+</div>

@@ -1,0 +1,170 @@
+@charset "utf-8";
+/* CSS Document */
+
+.body {
+	background-color:rgba(255,255,255,0.7) ;
+	text-align:left;
+	}
+.header_sitename_bg{
+	vertical-align:top;
+	/*background-image:url(../images/arzonelogo3.png);*/
+	background-repeat:repeat-x;
+	/*background-color:#7CD865;*/
+	text-align:left;
+	padding:0px;
+	text-decoration:none;
+	color:#000000;
+}
+
+.header_sitename_bg a{
+	text-decoration:none;
+	color:#000000;
+}
+
+
+.menuprincipale {
+	/*background-image: url(../images/ar_btt_menuprincipale.png);*/
+	background-color:#2B69D2;
+	background-repeat:repeat-x;
+
+}
+
+.basdepage{
+	background-color:#005BB7;
+	text-align:center;
+	padding-bottom:5px;
+	padding-top:5px;
+	text-decoration:none;
+	color:#FFFFFF;
+}
+
+.bodi{
+
+padding-left:0px;
+	padding-right:0px;
+	color:#000000;
+	display:block;
+	margin-left:-8px;
+	margin-right:-8px;*/
+	inline-box-align:initial;
+	width:inherit;
+	background:url(../images/ar_site.png) no-repeat left fixed;
+	-moz-background-size:cover;
+	background-size:cover;
+	display:block;
+
+	 }
+
+.body_iframe{
+
+padding-left:0px;
+	padding-right:0px;
+	color:#000000;
+	display:block;
+	/*margin-left:-8px;
+	margin-right:-8px;*/
+	inline-box-align:initial;
+	width:inherit;
+	background-color:#FFF;
+	-moz-background-size:cover;
+	background-size:cover;
+	display:block;
+	font-weight:bold;
+
+	 }
+
+
+.animtitlebanner{
+	height:50px; position:absolute; top:200px;  opacity:0.5; background-color:#FFFFFF; padding-left:20px; width:100%; z-index:100; text-align:left;
+	font-weight:bold;
+	color:#006633;
+}
+
+.nouveau_formulaire a{
+	text-decoration:none;
+	color:#FFFFFF;
+	font-size:20px;
+	margin-left:5px;
+	}
+
+.ligne_indicateurs {
+	font-weight:bold;
+	color:#990000;
+
+}
+
+.modal_affichage{
+	padding:15px 15px; background-color:#006699; color:#FFF; display:block;
+
+	}
+
+th_affichage{
+
+	}
+
+.form_padding{
+	padding:5px;
+	color:#F00;
+	}
+
+.insertion_ligne{
+	vertical-align:top;
+	font-size:x-small;
+	font-weight:bold
+	}
+
+.entete_titre{
+
+	}
+
+.ajouter_ligne{
+
+	}
+
+	.produit{
+		font-weight:bold;
+		color:black;
+	}
+
+.menuprincipale{
+background-color:#006697;
+ 	}
+
+	.conteneurTreeview{
+		cursor: auto;
+		scroll-behavior: auto;
+		width: 250px;
+	}
+
+input [type=text]{
+	width: 5%;
+}
+
+.divtree{
+	min-width: 200px;
+	max-width: 250px;
+	max-height: 400px;
+}
+
+	.div-disabled
+	{
+	  pointer-events: none;
+	  opacity: 0.5;
+	  background: #CCC;
+	}
+
+
+	div.editepromodal {
+		position:relative;
+	   top:auto;
+	   right:auto;
+	   left:auto;
+	   bottom:100;
+	}
+	div.horizontaldefilmodal {
+
+		 overflow: auto;
+		 white-space: nowrap;
+		background-color: white;
+
+	}

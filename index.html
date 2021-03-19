@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Data Transfert</title>
+	<meta name="description" content="Customs indicator">
+	<link rel="icon" href="img/icons/icon.png">
+	<link rel="stylesheet" href="css/jQuery/jquery-ui.css">
+	<link type="text/css" rel="stylesheet" media="screen" href="../../../dhis-web-commons/select2/select2.css" />
+	<link type="text/css" rel="stylesheet" media="screen"
+		href="../../../dhis-web-core-resource/select2/3.4.5/select2-bootstrap.css" />
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/lobipanel.css">
+	<script src="js/jquery.js"></script>
+	<script type="text/javascript" language="javascript" src="js/libs/jQuery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../../../dhis-web-commons/select2/select2.min.js"></script>
+	<script type="text/javascript" src="js/jquery.toastmessage.js"></script>
+	<script type="text/javascript" src="js/lobipanel.js"></script>
+
+	<!-- Stylesheets related to the menu -->
+	<link type="text/css" rel="stylesheet" href="../../../dhis-web-commons/font-awesome/css/font-awesome.min.css" />
+	<link type="text/css" rel="stylesheet" media="screen" href="../../../dhis-web-commons/css/menu.css">
+
+	<style>
+		body,
+		.container {
+			padding-top: 20px;
+			padding-bottom: 40px;
+		}
+
+		table,
+		th,
+		td {
+			border: 1px solid grey;
+			border-collapse: collapse;
+			padding: 5px;
+		}
+
+		table tr:nth-child(odd) {
+			background-color: #f1f1f1;
+		}
+
+		table tr:nth-child(even) {
+			background-color: #ffffff;
+		}
+
+		.loader {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			z-index: 1;
+			width: 125px;
+			: 125px;
+			margin: -75px 0 0 -75px;
+			border: 2px solid #f3f3f3;
+			border-radius: 50%;
+			border-top: 2px solid #3498db;
+			-webkit-animation: spin 2s linear infinite;
+			animation: spin 2s linear infinite;
+		}
+
+		@-webkit-keyframes spin {
+			0% {
+				-webkit-transform: rotate(0deg);
+			}
+
+			100% {
+				-webkit-transform: rotate(360deg);
+			}
+		}
+
+		@keyframes spin {
+			0% {
+				transform: rotate(0deg);
+			}
+
+			100% {
+				transform: rotate(360deg);
+			}
+		}
+	</style>
+
+	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+	<link rel="stylesheet" href="css/main.css">
+	<!--     -->
+	<script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$('.lobipanel').lobiPanel();
+			$('#lobipanel-multiple').find('.panel').lobiPanel({
+				sortable: false,
+				reload: false,
+				close: false,
+				editTitle: false,
+				draggable: false,
+				unpin: false,
+				expand: false,
+				minimize: {
+					icon: 'fa fa-chevron-up',
+					icon2: 'fa fa-chevron-down'
+				},
+				toSmallSize: true
+			});
+			$('#filtre-panel-multiple').find('.panel').lobiPanel({
+				sortable: false,
+				reload: false,
+				close: false,
+				editTitle: false,
+				draggable: false,
+				unpin: false,
+				expand: false,
+				minimize: {
+					icon: 'fa fa-chevron-up',
+					icon2: 'fa fa-chevron-down'
+				}
+			});
+			$('#itemTable').DataTable();
+			//$('.lobipanel').lobiPanel('minimize');
+			//console.log("dTable "+ dTable);			
+			$("#metaChoosen").select2();
+			$("#groupMetaList").select2();
+			$("#ouLevelList").select2();
+			$("#period1").select2();
+			$('.lobipanel').on('onFullScreen.lobiPanel', function (ev, lobiPanel) {
+				setTimeout(function () {
+					window.dispatchEvent(new Event('resize')); //loadChart();
+				}, 200);
+				//window.console.log("On small size", ev, lobiPanel);
+			});
+			$('.lobipanel').on('onSmallSize.lobiPanel', function (ev, lobiPanel) {
+				setTimeout(function () { window.dispatchEvent(new Event('resize')); loadChart(); }, 200);
+			});
+		});
+	</script>
+</head>
+
+<body data-ng-app="dataManager">
+	<div id="header"></div>
+	<div id="headerMessage"></div>
+	<div style=": 48px; background-color: #fbfbfb"></div>
+	<!-- 	 <div id="dhisDropDownMenu"></div>  -->
+	<div class="row container-fluid" id="row-main">
+		<div class="col-md-2 sidebar" id="sidebar-left">
+			<div ng-include="'menus/menu-left.html'" ng-controller="menuController"> </div>
+		</div>
+		<div class="col-md-10" id="content" ng-class="{'div-disabled': disableContent}">
+
+			<div class="" data-ng-controller="syncController">
+				<h3>&nbsp;&nbsp;Data sync</h3>
+
+				<fieldset>
+					<legend></legend>
+				</fieldset>
+
+				<!--Multiple lobiPanels-->
+				<div id="lobipanel-multiple">
+					<div class="bs-example">
+						<div class="panel">
+							<div class="col-md-12">
+								<div class="panel panel-default hidden">
+									<div class="panel-heading">
+										<div class="panel-title">
+											<h4>Selections Metadata </h4>
+										</div>
+									</div>
+									<br />
+									<div id="prodGroup" class="panel-body">
+										<select data-ng-model="groupMetaList" id="groupMetaList"
+											data-placeholder="Select Indicator Group" class="form-control"
+											style="max-width:300px;">
+											<option value="" selected="selected"></option>
+										</select></br>
+										<select class="form-control hidden" multiple="multiple"
+											data-ng-model="metaChoosen" id="metaChoosen" name="metaChoosen"
+											placeholder="Selectionner les items">
+										</select>
+
+										<div id='selectedItems' style="display:inline"> IDS Selected : [
+											{{selectedItems}} ] </div>
+										</br>
+										<div style=" margin: 10px 30px 10px 30px; ">
+
+											<table
+												class="table table-striped table-hover table-condensed table-bordered"
+												id="itemTable">
+												<thead>
+													<tr>
+														<th></th>
+														<th>Uid </th>
+														<th>Code </th>
+														<th>Metadata </th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+										<div class="pull-right btn btn-success col-sm-2" id="btnImport"
+											data-ng-click="selectedItemConfirm()"><i class="fa fa-retweet"
+												aria-hidden="true"></i> selected Item Confirm </div>
+
+									</div>
+
+								</div>
+								<div class="panel panel-default hidden">
+									<div class="panel-heading">
+										<div class="panel-title">
+											<h4>Selection Period and orgunit</h4>
+										</div>
+									</div>
+									<br />
+									<div id="sitPerte" class="panel-body">
+										<table class="table table-striped table-hover table-condensed table-bordered">
+											<tbody>
+												<td>
+
+												</td>
+												<td>
+													<fieldset>
+														<legend>Orgunit</legend>
+														<div style="max-:300px; max-width:300px; overflow:scroll; border:1px solid lightgray; border-radius:5px;"
+															ng-include="'menus/arborescence.html'"> </div>
+													</fieldset>
+												</td>
+												<td>
+													<label> Level </label>
+													<select class="form-control" data-ng-model="ouLevelList"
+														data-ng-model="options.periodType" id="ouLevelList"
+														name="ouLevelList" placeholder="Select level">
+													</select>
+												</td>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="panel panel-info hidden">
+									<div class="panel-heading">
+										<div class="panel-title">
+											<h4>Target Server</h4>
+										</div>
+									</div>
+									<div id="sitDispo" class="panel-body">
+
+										<div class="form-group" style='width:90%;'>
+											<label> URL </label>
+											<input class="form-control" type="text" style='width:50%;'
+												placeholder="[serverURL]" aria-label="targetServer URL"
+												id="targetServerURL" data-ng-model="targetServer.url"
+												value="https://ds.dev.hispuganda.org/" />
+											<label> Login </label>
+											<input class="form-control" type="text" style='width:50%;'
+												placeholder="enter username" aria-label="targetServer login"
+												id="targetServerLogin" data-ng-model="targetServer.user" />
+											<label> Password </label>
+											<input class="form-control" type="text" style='width:50%;'
+												placeholder="enter password" aria-label="targetServer pwd"
+												id="targetServerPwd" data-ng-model="targetServer.pwd" />
+											<br />
+											<span class="label label-{{spanClass}}"> {{testConnexionStatut}} </span>
+											<br />
+											<div class="btn btn-success col-sm-2" id="btnImport"
+												data-ng-click="testConnexion()"><i class="fa fa-retweet"
+													aria-hidden="true"></i> Test connexion </div>
+
+										</div>
+									</div>
+								</div>
+
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										<div class="panel-title">
+											<h4>Process</h4>
+										</div>
+									</div>
+									<div id="sitRaisCde" class="panel-body">
+										<div class="form-inline" style='width:90%;'>
+											<label> Instance </label>
+											<select data-ng-model="instance" id="instance"
+												data-placeholder="Select Instance" class="form-control"
+												style="max-width:300px;">
+												<option value="" selected="selected"></option>
+											</select></br>
+											<div ng-hide="instance == ''" style='width:60%;'
+												ng-include="'menus/periode2.html'"> </div>
+											<div id="selectedOpts" class="pull-left btn col-sm-10 hidden">
+												<div id='selectedOptsPEs' style="display:inline">
+													<div id='selectedOptsOU' style="display:inline"> </div> &nbsp;|
+													&nbsp;
+													<div id='selectedOptsPE' style="display:inline"> </div> &nbsp;|
+													&nbsp;
+													<div id='selectedOptsProd' style="display:inline"> </div>
+												</div>
+												</br>
+											</div>
+											</br>
+											<div class="btn btn-success" id="btnImport" data-ng-click="process()"><i
+													class="fa fa-send" aria-hidden="true"></i>
+												Process </div>
+										</div>
+										<span class="label label-{{spanClass}}"> {{processStatut}} </span>
+										<div class="progress-bar" role="progressbar" aria-valuenow="70"
+											aria-valuemin="0" aria-valuemax="100" style="width:70%">
+											<span class="sr-only">70% Complete</span>
+										</div>
+									</div>
+								</div>
+								<div class="panel panel-info">
+									<div class="panel-heading">
+										<div class="panel-title">
+											<h4>Sync Summary</h4>
+										</div>
+									</div>
+									<div id="sitDispo" style=": 200px;" class="panel-body">
+										<div id="loader" class="loader" style="display:none;"> </div>
+										<div id="summary" style="display:none;">
+											<div class="pull-left ">
+												<h5><span class="label label-default"> Statut :
+													</span>&nbsp;&nbsp;{{importSummary.description}}</h5>
+
+												<h5>imported : <span
+														class="label label-success">{{importSummary.importCount.imported}}</span>
+												</h5>
+												<h5>updated : <span
+														class="label label-primary">{{importSummary.importCount.updated}}</span>
+												</h5>
+												<h5>ignored : <span
+														class="label label-info">{{importSummary.importCount.ignored}}</span>
+												</h5>
+												<h5>deleted : <span
+														class="label label-warning">{{importSummary.importCount.deleted}}</span>
+												</h5>
+											</div>
+											<div class="pull-right btn btn-info col-sm-2" id="btnImport"
+												data-ng-click="summaryDown()"><i class="fa fa-download"
+													aria-hidden="true"></i> Download summary</div>
+											</br>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--End-->
+
+			</div>
+
+		</div>
+	</div>
+
+	<div id="coverLoad">
+		<image class="loadImage" src="images/loader.gif" />
+	</div>
+
+	<div id="myModal" class="modal fade">
+		<div class="modal-dialog modal-confirm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body text-center">
+					<h4><span id="alMsg1"></span></h4>
+					<p><span id="alMsg2"></p>
+					<button class="btn btn-success" data-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- ***************************************************************************************** -->
+	<!-- footer -->
+
+	<!-- end footer -->
+
+	<!-- /container -->
+
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-treeview.js"></script>
+
+	<!-- Angular JavaScript -->
+	<script src="js/angular.min.js"></script>
+
+	<script src="scripts/controllers/app.js"></script>
+	<script src="scripts/controllers/syncController.js"></script>
+
+
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/bootstrap-datepicker.fr.js"></script>
+	<script src="js/underscore.min.js"></script>
+	<script src="js/libs/jquery.blockUI.js"></script>
+	<link rel="stylesheet" href="js/libs/DataTables/media/css/datatables.min.css">
+	<script type="text/javascript" src="js/libs/DataTables/media/js/datatables.min.js"></script>
+	<link rel="stylesheet" href="js/libs/DataTables/media/css/dataTables.checkboxes.css">
+	<script type="text/javascript" src="js/libs/DataTables/media/js/dataTables.checkboxes.min.js"></script>
+	<script src="js/libs/es5-shim.min.js"></script>
+	<script src="js/moment-with-langs.min.js"></script>
+	<script src="js/function.js"></script>
+	<script src="js/util.js"></script>
+	<script src="js/main.js"></script>
+
+	<!-- DHIS2 Settings initialization for a baseUrl that is used for the menu -->
+	<script>
+		window.dhis2 = window.dhis2 || {};
+		dhis2.settings = dhis2.settings || {};
+
+		var dhisroot = window.location.href.split('/api/')[0];
+		var dhisrootArr = dhisroot.split('/');
+		console.log("index.html: Prefix: " + dhisrootArr[3]);
+		console.log(dhisroot);
+		if (dhisrootArr.length >= 4) {
+			dhis2.settings.baseUrl = dhisrootArr[3];
+		} else {
+			dhis2.settings.baseUrl = '..';
+		}
+
+		$(document).ready(function () {
+			$("#coverLoad").hide();
+
+		});
+	</script>
+
+	<!-- Menu scripts -->
+	<script type="text/javascript" src="../../../dhis-web-commons/javascripts/dhis2/dhis2.translate.js"></script>
+	<script type="text/javascript" src="../../../dhis-web-commons/javascripts/dhis2/dhis2.menu.js"></script>
+	<script type="text/javascript" src="../../../dhis-web-commons/javascripts/dhis2/dhis2.menu.ui.js"></script>
+	<script type="text/javascript" src="js/utils/dhis2.menu.ui.js"></script>
+	<script src="js/select2/select2.min.js"></script>
+	<script src="../../../dhis-web-core-resource/lodash/4.15.0/lodash.min.js"></script>
+	<script src="../../../dhis-web-core-resource/lodash/4.15.0/lodash.fp.min.js"></script>
+	<script src="../../../dhis-web-core-resource/react/15.3.2/react-with-touch-tap-plugin.min.js"></script>
+	<script src="../../../dhis-web-core-resource/rxjs/4.1.0/rx.lite.min.js"></script>
+	<script src="../../../dhis-web-core-resource/lodash/4.15.0/lodash.min.js"></script>
+	<script src="../../../dhis-web-core-resource/lodash-functional/1.0.1/lodash-functional.js"></script>
+	<script src="../../../dhis-web-core-resource/babel-polyfill/6.20.0/dist/polyfill.min.js"></script>
+	<script src="../../../dhis-web-core-resource/d2-ui/28.0.3/dist/header-bar.js"></script>
+	<script>
+		jQuery(function () {
+			Dhis2HeaderBar.initHeaderBar(document.querySelector('#header'), '../../../api', { noLoadingIndicator: true });
+		});
+	</script>
+	<!-- printThis -->
+	<script type="text/javascript" src="js/printThis.js"></script>
+
+
+</body>
+
+</html>

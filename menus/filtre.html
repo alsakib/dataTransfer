@@ -1,0 +1,53 @@
+<script>
+$('#filtre-panel-multiple').find('.panel').lobiPanel({
+                sortable: false,				
+                reload: false,
+                close: false,
+                editTitle: false,
+                draggable: false,
+				unpin: false,
+				expand: false
+            });
+$('#filtre-panel-multiple').find('.entete').lobiPanel({
+
+            });
+</script>
+<div id="filtre-panel-multiple">
+<div class="panel panel-default entete">
+	<div class="panel-heading">
+		<div class="panel-title">
+			<b>Filtre</b>
+		</div>
+	</div>
+</div>
+<div class="panel panel-default ">
+	<div class="panel-heading">
+		<div class="panel-title">
+			Groupe Produit
+		</div>
+	</div>                                   
+	<div class="panel-body">
+	 <div id="prodGroup"></div>
+	</div>
+</div>
+<div class="panel panel-default ">
+	<div class="panel-heading">
+		<div class="panel-title">
+			Periode
+		</div>
+	</div>                                   
+	<div class="panel-body">
+	<div ng-include="'menus/periode.html'" > </div>
+	</div>
+</div>
+<div class="panel panel-default ">
+	<div class="panel-heading">
+		<div class="panel-title">
+			Site
+		</div>
+	</div>                                   
+	<div class="panel-body">
+	<div style="max-height: 300px; overflow: scroll; border:1px solid lightgray; border-radius:5px;" ng-include="'menus/arborescence.html'" > </div>
+	</div>
+</div>
+</div>

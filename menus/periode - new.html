@@ -1,0 +1,162 @@
+
+<script type="text/javascript">
+
+var language = "en";
+//Dictionary
+//{ key : "keyId", value : [ "en", "lo" ]},
+var translation =[];
+
+
+jQuery( document ).ready( function() {
+ //get langue du user
+ //$.get( "../api/me/profile", function( json ) {
+ json = {
+     id: "M5zQapPyTZI",
+     username: "admin",
+     firstName: "admin",
+     surname: "admin",
+     settings: {
+     keyDbLocale: null,
+     keyMessageSmsNotification: "false",
+     keyUiLocale: "fr",
+     keyAnalysisDisplayProperty: "name",
+     keyMessageEmailNotification: "false",
+     },
+     };
+   language = json.settings.keyUiLocale;
+   loadDialogPeriod(language);
+ //});
+});
+
+
+function loadDialogPeriod(language){
+ var today = new Date();
+ var yyyy = today.getFullYear();
+ var type = "Monthly";
+ $('input:radio[name="peType"]').change(function(){
+   type = $(this).val();
+   load_period(type,yyyy,language);
+   $("#peValue").show();
+ });
+ $('#preYear').click(function(){
+   yyyy--;
+   load_period(type,yyyy,language);
+ });
+ $('#nextYear').click(function(){
+   yyyy++;
+   load_period(type,yyyy,language);
+ });
+ $('#period1').change(function() {
+   selectedOptionsPE = $("#period1 option:selected").val();
+   console.log('selectedOptionsPE: '+selectedOptionsPE);   
+	$("#selectedOptsPE").html($("#period1 option:selected").text());
+	
+		if(type=="Yearly"){
+			periodPrec = moment(selectedOptionsPE,'YYYY').date(-1).format("YYYY");
+		 } else if(type=="Quarterly"){
+			var fmt = 'YYYY[Q]Q';
+			periodPrec = moment(selectedOptionsPE,fmt).date(-1).format(fmt);
+		 } else{
+			periodPrec = moment(selectedOptionsPE,'YYYYMM').add(-1,'months').format("YYYYMM");
+		 };
+					 
+	runAnalytics(selectedOptionsOU,selectedOptionsPE, 1);
+ });
+}
+
+//Chargement du Combobox apres selection du type period
+function load_period(type,yyyy,language){
+ $("#period1").text("");
+ if(language== "en"){
+ if(type=="Yearly"){
+   for(i=12;i>=0;i--){
+     $("#period1").append("<option value='" + (yyyy - i) + "'>" + (yyyy - i) + ""+ "</option>");
+   }
+ } else if(type=="Quarterly"){
+   for(i=3;i>=0;i--){
+     $("#period1").append("<option value='" + (yyyy - i) + "Q1'>January - March " + (yyyy - i)+ "</option>");
+     $("#period1").append("<option value='" + (yyyy - i) + "Q2'>April - June " + (yyyy - i)+ "</option>");
+     $("#period1").append("<option value='" + (yyyy - i) + "Q3'>July - September " + (yyyy - i)+ "</option>");
+     $("#period1").append("<option value='" + (yyyy - i) + "Q4'>October - December " + (yyyy - i)+ "</option>");
+   }
+ } else{
+   $("#period1").append("<option value='" + yyyy + "01'>January " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "02'>Febuary " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "03'>March " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "04'>April " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "05'>May " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "06'>June " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "07'>July " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "08'>August " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "09'>September " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "10'>Octorber " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "11'>November " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "12'>December " + yyyy + "</option>");
+ }
+ }
+ if(language== "fr"){
+ if(type=="Yearly"){
+   for(i=12;i>=0;i--){
+     $("#period1").append("<option value='" + (yyyy - i) + "'>" + (yyyy - i) + "</option>");
+   }
+ } else if(type=="Quarterly"){
+   for(i=3;i>=0;i--){
+     $("#period1").append("<option value='" + (yyyy - i) + "Q1'>Janvier - Mars " + (yyyy - i)+ "</option>");
+     $("#period1").append("<option value='" + (yyyy - i) + "Q2'>Avril - Juin " + (yyyy - i)+ "</option>");
+     $("#period1").append("<option value='" + (yyyy - i) + "Q3'>Juillet - Septembre " + (yyyy - i)+ "</option>");
+     $("#period1").append("<option value='" + (yyyy - i) + "Q4'>October - Decembre " + (yyyy - i)+ "</option>");
+   }
+ } else{
+   $("#period1").append("<option value='" + yyyy + "01'>Janvier " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "02'>Fevrier " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "03'>Mars " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "04'>Avril " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "05'>Mai " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "06'>Juin " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "07'>Juillet " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "08'>Aout " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "09'>Septembre " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "10'>Octobre " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "11'>Novembre " + yyyy + "</option>");
+   $("#period1").append("<option value='" + yyyy + "12'>Decembre " + yyyy + "</option>");
+ };
+ 
+$("#selectedOptsPE").html($("#period1 option:selected").text());
+   selectedOptionsPE = $("#period1 option:selected").val();
+	
+		if(type=="Yearly"){
+			periodPrec = moment(selectedOptionsPE,'YYYY').date(-1).format("YYYY");
+		 } else if(type=="Quarterly"){
+			var fmt = 'YYYY[Q]Q';
+			periodPrec = moment(selectedOptionsPE,fmt).date(-1).format(fmt);
+		 } else{
+			periodPrec = moment(selectedOptionsPE,'YYYYMM').add(-1,'months').format("YYYYMM");
+		 };
+			 
+	runAnalytics(selectedOptionsOU,selectedOptionsPE, 1);				 
+ }
+}
+
+//code pour integrer la valeur selectionné
+var period = $("#period1").val();
+
+</script>
+<div id="dialog">
+ <form>
+   <p class="select_period_type">Type periode:</p>
+   <p>
+     <input type="radio" name="peType" value="Yearly"/>  <a class="yearlyy">Annuel</a>
+     <input type="radio" name="peType" value="Quarterly"/>  <a class="quarterlyy">Trimestriel</a>
+     <input type="radio" name="peType" value="Monthly"/>  <a class="monthlyy">Mensuel</a>
+   </p>
+   <br>
+   <span id="peValue" style="display:none;">
+   <p>
+     <select id="period1">
+     </select>
+     <input type="button" id="preYear" value="&nbsp;«&nbsp;" />
+     <input type="button" id="nextYear" value="&nbsp;»&nbsp;" />
+   </p>
+   </span>
+ </form>
+</div>

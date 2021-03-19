@@ -1,0 +1,23 @@
+{
+    "version": "1.0.2",
+    "name": "Data Transfer 2",
+    "description": "dataTransfer",
+    "icons": {
+        "16": null,
+        "48": "images/icons/icon.png",
+        "128": null
+    },
+    "developer": {
+        "url": "info@hispwca.org",
+        "name": "Sakibou",
+        "company": "HISP WCA",
+        "email": "salassani@hispwca.org"
+    },
+    "activities": {
+        "dhis": {
+            "href": "*"
+        }
+    },
+    "launch_path": "index.html",
+    "default_locale": "en"
+}

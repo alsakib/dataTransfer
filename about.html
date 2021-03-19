@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Data Transfer</title>
+	<meta name="description" content="Customs indicator">
+	<meta name="viewport" content="width=device-width">
+
+	<meta name="viewport" content="width=device-width">
+	<link rel="icon" href="img/icons/icon.png">
+	<script type="text/javascript" language="javascript" src="js/libs/jQuery/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" language="javascript" src="js/libs/jQuery/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="css/jQuery/jquery-ui.css">
+	<script type="text/javascript" src="../../../dhis-web-commons/select2/select2.min.js"></script>
+	<link type="text/css" rel="stylesheet" media="screen" href="../../../dhis-web-commons/select2/select2.css" />
+
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<script type="text/javascript" src="js/jquery.toastmessage.js"></script>
+
+	<!-- Stylesheets related to the menu -->
+	<link type="text/css" rel="stylesheet" href="../../../dhis-web-commons/font-awesome/css/font-awesome.min.css" />
+	<link type="text/css" rel="stylesheet" media="screen" href="../../../dhis-web-commons/css/menu.css">
+	<link type="text/css" rel="stylesheet" media="screen"
+		href="../../../dhis-web-core-resource/leaflet/0.7.7/leaflet.css">
+	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.min.css">-->
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/1.0.0/ng-table.min.js"></script>-->
+	<link type="text/javascript" href="../../../dhis-web-core-resource/leaflet/0.7.7/leaflet.js">
+
+	<style>
+		body,
+		.container {
+			padding-top: 20px;
+			padding-bottom: 40px;
+		}
+
+		#map {
+			height: 500px;
+		}
+	</style>
+	<link rel="stylesheet" href="css/main.css">
+
+	<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
+	<script>
+
+		$(function () {
+			//$( "#queryContainer" ).accordion({
+			// collapsible: true
+			//	});
+		});
+		$(document).ready(function () {
+			$("#region").select2();
+			$("#district").select2();
+			$("#facility").select2();
+			$("#services").select2();
+			$('#hs').DataTable();
+			//console.log("dTable "+ dTable);
+
+		});
+	</script>
+	<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body data-ng-app="dataManager">
+
+	<div id="header"></div>
+	<div id="headerMessage"></div>
+	<!--<div id="dhisDropDownMenu"></div>  -->
+	<div id="leftBar">
+		<div ng-include="'menus/menu-left.html'" ng-controller="menuController"> </div>
+	</div>
+
+	<!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+	<style>
+		#coverLoad {
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.5);
+			z-index: 2147483647;
+		}
+
+		.loadImage {
+			width: 150px;
+			height: 150px;
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			margin-top: -75px;
+			margin-left: -75px;
+		}
+	</style>
+
+	<div id="coverLoad">
+		<image class="loadImage" src="images/loader.gif" />
+	</div>
+
+
+	<div class="container col-md-12 col-md-offset-2 ">
+		<h3>About</h3>
+
+		<fieldset>
+			<legend></legend>
+		</fieldset>
+		<br />
+		<!-- debut contenu -->
+		<div class="panel-group" style="max-width: 80%;">
+			<div class="panel panel-default">
+				<div class="panel-heading"><i class="fa fa-info" aria-hidden="true"></i></div>
+				<div class="panel-body">
+					<p><strong><span style="font-size:18px;">Data Transfer</span></strong><br />
+						<span style="color:#808080;"><span style="font-size: 14px;">.</span></span></p>
+
+
+				</div>
+			</div>
+
+		</div>
+		<!-- fin contenu -->
+
+	</div>
+	<!-- ***************************************************************************************** -->
+	<!-- footer -->
+	<div class="foo-footer">
+		<div class="col-md-8 col-md-offset-1">
+			<p>&copy; HISP WCA</p>
+		</div>
+	</div>
+	<!-- end footer -->
+
+
+	<script>
+		$(function () {
+			$('[data-toggle="tooltip"]').tooltip()
+		});
+	</script>
+
+	<!-- /container -->
+
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- Angular JavaScript -->
+	<script src="js/angular.min.js"></script>
+
+	<script src="js/dirPagination.js"></script>
+	<script src="scripts/controllers/app.js"></script>
+
+
+	<script src="js/bootstrap-datepicker.js"></script>
+	<script src="js/bootstrap-datepicker.fr.js"></script>
+	<script src="js/underscore.min.js"></script>
+	<script src="js/libs/jquery.blockUI.js"></script>
+	<link rel="stylesheet" href="js/libs/DataTables/media/css/jquery.dataTables.css">
+	<script type="text/javascript" src="js/libs/DataTables/media/js/jquery.dataTables.min.js"></script>
+	<script src="js/libs/es5-shim.min.js"></script>
+	<script src="js/moment-with-langs.min.js"></script>
+	<script src="js/function.js"></script>
+	<script src="js/util.js"></script>
+	<script src="js/main.js"></script>
+
+	<!-- DHIS2 Settings initialization for a baseUrl that is used for the menu -->
+	<script>
+		window.dhis2 = window.dhis2 || {};
+		dhis2.settings = dhis2.settings || {};
+
+		var dhisroot = window.location.href.split('/api/')[0];
+		var dhisrootArr = dhisroot.split('/');
+		console.log("index.html: Prefix: " + dhisrootArr[3]);
+		if (dhisrootArr.length >= 4) {
+			dhis2.settings.baseUrl = dhisrootArr[3];
+		} else {
+			dhis2.settings.baseUrl = '';
+		}
+	</script>
+
+
+	<!-- Menu scripts -->
+	<script type="text/javascript" src="../../../dhis-web-commons/javascripts/dhis2/dhis2.translate.js"></script>
+	<script type="text/javascript" src="../../../dhis-web-commons/javascripts/dhis2/dhis2.menu.js"></script>
+	<script type="text/javascript" src="../../../dhis-web-commons/javascripts/dhis2/dhis2.menu.ui.js"></script>
+	<script type="text/javascript" src="js/utils/dhis2.menu.ui.js"></script>
+	<script src="js/select2/select2.min.js"></script>
+	<script src="../../../dhis-web-core-resource/lodash/4.15.0/lodash.min.js"></script>
+	<script src="../../../dhis-web-core-resource/lodash/4.15.0/lodash.fp.min.js"></script>
+	<script src="../../../dhis-web-core-resource/react/15.3.2/react-with-touch-tap-plugin.min.js"></script>
+	<script src="../../../dhis-web-core-resource/rxjs/4.1.0/rx.lite.min.js"></script>
+	<script src="../../../dhis-web-core-resource/lodash/4.15.0/lodash.min.js"></script>
+	<script src="../../../dhis-web-core-resource/lodash-functional/1.0.1/lodash-functional.js"></script>
+	<script src="../../../dhis-web-core-resource/babel-polyfill/6.20.0/dist/polyfill.min.js"></script>
+	<script src="../../../dhis-web-core-resource/d2-ui/28.0.3/dist/header-bar.js"></script>
+	<script>
+		jQuery(function () {
+			Dhis2HeaderBar.initHeaderBar(document.querySelector('#header'), '../../../api', { noLoadingIndicator: true });
+		});
+	</script>
+</body>
+
+</html>

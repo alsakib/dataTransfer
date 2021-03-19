@@ -1,0 +1,232 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+
+		.pndLbl
+		{
+			width:150px;
+		}
+		
+		.glyphicon.glyphicon-pencil,.glyphicon.glyphicon-trash,.glyphicon.glyphicon-link,.glyphicon.glyphicon-wrench, .glyphicon.glyphicon-plus, .glyphicon.glyphicon-ok, .glyphicon.glyphicon-remove
+		{
+			font-size: 15px;
+		}
+		
+		.glyphicon.glyphicon-ok
+		{
+			color:#66CC66;
+			display:none;
+			cursor:pointer;
+		}
+		.glyphicon.glyphicon-remove
+		{
+			color:red;
+			display:block;
+			cursor:pointer;
+		}
+		
+		.glyphicon.glyphicon-inbox,.glyphicon.glyphicon-refresh,.glyphicon.glyphicon-globe,.glyphicon.glyphicon-time
+		{
+			font-size: 35px;
+			margin-top:18px;
+		}
+		
+		.navbar-brand
+		{
+			font-size:30px;
+		}
+
+
+.foo-footer {
+    left: 0;
+    padding: 10px 10%;
+    position: fixed;
+    background-color: #FFF;
+    background-color: rgba(255, 255, 255, .8);
+    border-top: 1px solid #CCC;
+    bottom: 0;
+    width: 100%;
+    z-index: 3
+}
+
+.foo-footer label,
+.foo-footer span {
+    line-height: 34px
+}
+		.sidebar-nav {
+		  position: absolute;
+		  width: 250px;
+		  margin: 0;
+		  padding: 0;
+		  list-style: none;
+}
+#content,
+.sidebar {
+	min-height: 650px;
+	height: 100%;
+}
+#row-main {
+	overflow-x: hidden; /* necessary to hide collapsed sidebars */
+}
+#content {
+	
+	-webkit-transition: width 0.5s ease;
+	-moz-transition: width 0.5s ease;
+	-o-transition: width 0.5s ease;
+	transition: width 0.5s ease;
+}
+
+.col-md-8 .width-10,
+.col-md-8 .width-12,
+.col-md-10 .width-8,
+.col-md-10 .width-12,
+.col-md-12 .width-8,
+.col-md-12 .width-10 {
+	display: none; /* just hiding labels for demo purposes */
+}
+.sidebar {
+	 background-color: #f3f3f3;
+	-webkit-transition: margin 0.5s ease;
+	-moz-transition: margin 0.5s ease;
+	-o-transition: margin 0.5s ease;
+	transition: margin 0.5s ease;
+	border:1px solid lightgray; border-radius:5px;"
+}
+.collapsed {
+	display: none; /* hide it for small displays */
+}
+@media (min-width: 992px) {
+	.collapsed {
+		display: block;
+	}
+	#sidebar-left.collapsed {
+		margin-left: -20%; /* same width as sidebar */
+	}
+	#sidebar-right.collapsed {
+		margin-right: -20%; /* same width as sidebar */
+	}
+}
+		#coverLoad
+		{
+			position:fixed;
+			width:100%;
+			height:100%;
+			background:rgba(0,0,0,0.5);
+			z-index:2147483647;
+		}
+		
+		.loadImage
+		{
+			width:150px;
+			height:150px;
+			position:fixed;
+			top:50%;
+			left:50%;
+			margin-top:-75px;
+			margin-left:-75px;
+		}
+
+.filtre 
+{
+	font-size:10px;
+}
+
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.panel-body {
+    padding: 5px;
+}
+    body {
+		font-family: 'Varela Round', sans-serif;
+	}
+	.modal-confirm {		
+		color: #434e65;
+		width: 525px;
+	}
+	.modal-confirm .modal-content {
+		padding: 20px;
+		font-size: 16px;
+		border-radius: 5px;
+		border: none;
+	}
+	.modal-confirm .modal-header {
+		background: #e85e6c;
+		border-bottom: none;   
+        position: relative;
+		text-align: center;
+		margin: -20px -20px 0;
+		border-radius: 5px 5px 0 0;
+		padding: 35px;
+	}
+	.modal-confirm h4 {
+		text-align: center;
+		font-size: 26px;
+		margin: 10px 0;
+	}
+	.modal-confirm .form-control, .modal-confirm .btn {
+		min-height: 40px;
+		border-radius: 3px; 
+	}
+	.modal-confirm .close {
+        position: absolute;
+		top: 15px;
+		right: 15px;
+		color: #fff;
+		text-shadow: none;
+		opacity: 0.5;
+	}
+	.modal-confirm .close:hover {
+		opacity: 0.8;
+	}
+	.modal-confirm .icon-box {
+		color: #fff;		
+		width: 95px;
+		height: 95px;
+		display: inline-block;
+		border-radius: 50%;
+		z-index: 9;
+		border: 5px solid #fff;
+		padding: 15px;
+		text-align: center;
+	}
+	.modal-confirm .icon-box i {
+		font-size: 58px;
+		margin: -2px 0 0 -2px;
+	}
+	.modal-confirm.modal-dialog {
+		margin-top: 80px;
+	}
+    .modal-confirm .btn {
+        color: #fff;
+        border-radius: 4px;
+		background: #eeb711;
+		text-decoration: none;
+		transition: all 0.4s;
+        line-height: normal;
+		border-radius: 30px;
+		margin-top: 10px;
+		padding: 6px 20px;
+		min-width: 150px;
+        border: none;
+    }
+	.modal-confirm .btn:hover, .modal-confirm .btn:focus {
+		background: #eda645;
+		outline: none;
+	}
+	.trigger-btn {
+		display: inline-block;
+		margin: 100px auto;
+	}
+
+	.div-disabled
+	{
+	  pointer-events: none;
+	  opacity: 0.5;
+	  background: #CCC;
+	}

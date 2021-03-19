@@ -1,0 +1,32 @@
+.pseudo_select{
+ background:#DDD url(images/arrows_blue.png) no-repeat right;
+ width:200px;
+ z-index:20;
+ padding:4px;
+ border:1px solid #CCC;
+ }
+.select_list{
+ position:absolute;
+ border-left:1px solid #DDD;
+ border-right:1px solid #DDD;
+ border-bottom:1px solid #DDD;
+ width:200px;
+ background:#F6FFD0;
+ z-index:20;
+ padding:4px;
+ font-size:0.8em;
+ }
+.select_close{
+ position:absolute;
+ bottom:2px;
+ right:2px;
+ cursor:pointer;
+ border:1px solid #CCC;
+ padding:0px 4px 2px 4px;
+ background:#006699;
+ color:#FFFFFF;
+ line-height:1.0em;
+ font-size:0.8em;
+ width:6px;
+ text-align:center;
+ }
