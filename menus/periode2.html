@@ -54,7 +54,7 @@
 			load_period(typePeriod, yyyy, language);
 		});
 		$('#period1').change(function () {
-			console.log('change', typePeriod);
+
 			//selectedOptionsPE = $("#period1 option:selected").val();
 			periodGet = $("#period1 option:selected").map(function () { return this.value }).get().join(";");
 
@@ -81,10 +81,10 @@
 				// console.log('dateStart',typepSelect, dateStart.format('YYYY MM DD'));  
 				dateStart.add(occur, typepSelect);
 			}
-			console.log('periodsArray2 ', periodsArray2);
+			//console.log('periodsArray2 ', periodsArray2);
 
 			selectedOptionsPE = periodsArray2.map(function (e) { return e }).join(";");
-			console.log('selectedOptionsPE: ' + selectedOptionsPE);
+			//console.log('selectedOptionsPE: ' + selectedOptionsPE);
 			//runAnalytics(selectedOptionsOU,selectedOptionsPE, 1);
 		});
 	}
@@ -92,6 +92,7 @@
 	//Chargement du Combobox apres selection du type period
 	function generatePeriods(startDate, endDate, typep, occur, format, formatFull) {
 		$("#period1").text("");
+		$("#period1").append("<option value=''> Select " + "</option>");
 
 		var periodsArray = [];
 		// var dateStart = moment();
@@ -105,7 +106,7 @@
 			$("#period1").append("<option value='" + selectObject.format(format) + "'>" + selectObject.format(formatFull) + "" + "</option>");
 			dateStart.add(occur, typep);
 		}
-		console.log('periodsArray', periodsArray);
+		//console.log('periodsArray', periodsArray);
 		//console.log('periodsArrayLength', periodsArray.length);
 
 		return periodsArray
@@ -138,10 +139,10 @@
 		//productSelected =$("#metaChoosen option:selected").map(function(){ return this.value }).get().join('"},{"id":"');
 
 </script>
-<div id="dialog" style=" max-width:300px; ">
-	<form>
-		<p class="select_period_type">Periode:</p>
-		<select class="browser-default custom-select hidden" name="peType" id="peType">
+<div id="dialog" class="form-inline" >
+
+		<label class="select_period_type hidden">Periode:</label>
+		<select class="browser-default custom-select hidden form-control" name="peType" id="peType">
 			<option selected>Select period</option>
 			<option value="Daily">Daily</option>
 			<option value="Weekly">Weekly</option>
@@ -151,12 +152,13 @@
 		</select>
 
 		<span id="peValue">
-			<div class="form" class="form-inline" style='width:90%;'>
-				<select class="select2" data-placeholder="Select period" style='width:60%;' id="period1">
+			<div class="form" class="form-inline">
+				<label class="select_period_type">Periode:</label>
+				<select class="select2 form-control" data-placeholder="Select period" style='width:40%;' id="period1" data-ng-model="period1">
 				</select>
 				<input type="button" id="preYear" value="&nbsp;«&nbsp;" />
 				<input type="button" id="nextYear" value="&nbsp;»&nbsp;" />
 			</div>
 		</span>
-	</form>
+
 </div>

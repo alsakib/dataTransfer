@@ -35,7 +35,7 @@
 	function loadDialogPeriod(language) {
 		//var today = new Date();
 		//var yyyy = today.getFullYear();
-		typePeriod = "Weekly";
+		//typePeriod = "Weekly";
 		load_period(typePeriod, yyyy, language);
 		$("#peType").change(function () {
 			typePeriod = $(this).val();
@@ -112,7 +112,7 @@
 </script>
 <div id="dialog" style=" max-width:600px; ">
 	<form>
-		<p class="select_period_type">Periode:</p>
+		<p class="select_period_type hidden">Periode:</p>
 		<select class="browser-default custom-select" name="peType" id="peType" hidden="hidden">
 			<option selected>Select period</option>
 			<option value="Daily">Daily</option>
@@ -123,8 +123,9 @@
 		</select>
 
 		<span id="peValue">
-			<div class="form" class="form-inline" style='width:90%;'>
-				<select class="select2" data-placeholder="Select period" multiple="multiple" style='width:60%;'
+			<div class="form" class="form-inline" style=''>
+				<label class="select_period_type">Periode:</label>
+				<select class="select2 form-control" data-placeholder="Select period" multiple="multiple" style='width:60%;'
 					id="period1">
 				</select>
 				<input type="button" id="preYear" value="&nbsp;«&nbsp;" />
