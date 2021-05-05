@@ -3,9 +3,54 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+	
+   .my-card
+   {
+	  /* position:absolute;
+	   top:-20px;*/	
+	   border-radius:2%;      
+	   position: relative;
+	   padding: 2px;
+	   margin: 2px;
+	   left:3%;
+	   border: 1px solid #CCC;
+	   width: 23.5%;
+	   box-shadow: 0 0.46875rem 2.1875rem rgba(63,106,216,0.03),0 0.9375rem 1.40625rem rgba(63,106,216,0.03),0 0.25rem 0.53125rem rgba(63,106,216,0.05),0 0.125rem 0.1875rem rgba(63,106,216,0.03);
+	   display: flex;
+	   flex: 1;
+	   flex-direction: column;
+	   max-width: 100%;
+	   font-size: 10px;
+	}
+	.widget-hr{
+		border-top: 1px solid #e6e3e37e;
+	}
+	.alert-purple { border-color: #694D9F;background: #694D9F;color: #fff; }
+	.alert-info-alt { border-color: #B4E1E4;background: #44bcd8;color: #fff; }
+	.alert-danger-alt { border-color: #B63E5A;background: #E26868;color: #fff; }
+	.alert-warning-alt { border-color: #F3F3EB;background: #edb879;color: #fff; }
+	.alert-success-alt { border-color: #19B99A;background: #20A286;color: #fff; }
 
+	.alert-purple { border-color: #694D9F;background: #5b448a;color: #fff; }
+	.alert-info-alt2 { border-color: #B4E1E4;background: #358597;color: #fff; }
+	.alert-danger-alt2 { border-color: #bd4c67;background: #bd6060;color: #fff; }
+	.alert-warning-alt2 { border-color: #F3F3EB;background: #ca9d65;color: #fff; }
+	.alert-success-alt2 { border-color: #19B99A;background: #208d75;color: #fff; }
 
+	.panel-purple .panel-heading { border-color: #694D9F;background: #694D9F;color: #fff; }
+	.panel-info-alt .panel-heading { border-color: #003f5c;background: #003f5c;color: #fff; }
+	.panel-info .panel-heading  { border-color: #B4E1E4;background: #2684a6;color: #fff; }
+	.panel-danger .panel-heading  { border-color: #B63E5A;background: #E26868;color: #fff; }
+	.panel-warning .panel-heading  { border-color: #F3F3EB;background: #ffa600;color: #fff; }
+	.panel-success .panel-heading { border-color: #19B99A;background: #20A286;color: #fff; }
+	/*.panel-default .panel-heading { border-color: #555a59;background: #6d7e7a;color: #fff; }*/
 
+	.glyphicon { margin-right:10px; }
+	.alert a {color: white;}
+	.alert-warning-alt a {color: white;}
+	.dashfont {
+		font-size: 25px;
+	}
 		.pndLbl
 		{
 			width:150px;
@@ -230,3 +275,14 @@
 	  opacity: 0.5;
 	  background: #CCC;
 	}
+
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak {
+  display: none;
+}
+
+[deferred-cloak], [data-deferred-cloak], [x-deferred-cloak], .deferred-cloak {
+    display: none;
+}

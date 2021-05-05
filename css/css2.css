@@ -133,7 +133,8 @@ background-color:#006697;
 	.conteneurTreeview{
 		cursor: auto;
 		scroll-behavior: auto;
-		width: 250px;
+		width: 400px;
+
 	}
 
 input [type=text]{
@@ -144,7 +145,59 @@ input [type=text]{
 	min-width: 200px;
 	max-width: 250px;
 	max-height: 400px;
+	cursor: auto;
+
 }
+
+.sidenav {
+  height: 70%; /* Full-height: remove this if you want "auto" height */
+  width: 250px; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 50px; /* Stay at the top */
+  left: 0;
+  background-color: #f3f3f3; /* Black */
+  overflow-x: auto;   /* Disable horizontal scroll */
+  padding-top: 20px;
+	cursor: auto;
+	scroll-behavior: auto;
+}
+
+/* The navigation bar */
+.container1_old {
+  overflow: hidden;
+  /*background-color: #333;*/
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 100%; /* Full width */
+	height: 20px%;
+	margin-left: 20px;
+	background-color:
+}
+
+.container1 {
+display: flex;
+box-sizing: border-box;
+background: rgb(39, 102, 150);
+position: fixed;
+top: 0px;
+left: 0px;
+width: 100%;
+min-height: 48px;
+justify-content: center;
+align-items: center;
+z-index: 1400;
+padding: 10px;
+}
+
+.main{
+	margin-left: 260px;
+	margin-top: 50px;
+
+
+
+}
+
 
 	.div-disabled
 	{
@@ -167,4 +220,8 @@ input [type=text]{
 		 white-space: nowrap;
 		background-color: white;
 
+	}
+
+	#id_htmlmaine{
+		padding: 5px;
 	}
