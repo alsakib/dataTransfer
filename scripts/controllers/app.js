@@ -1,4 +1,37 @@
-var app = angular.module('dataManager', ['d2Menu', 'd2HeaderBar']);
+var app = angular.module('dataManager', ['d2Menu', 'd2HeaderBar', 'pascalprecht.translate', 'ngRoute']);
+
+app.directive("deferredCloak", function () {
+	return {
+		restrict: 'A',
+		link: function (scope, element, attrs) {
+			attrs.$set("deferredCloak", undefined);
+			element.removeClass("deferred-cloak");
+		}
+	};
+
+});
+
+app.config(["$translateProvider", function ($translateProvider) {
+
+	fetch('translations.json')
+		.then(response => response.json())
+		.then(data => {
+			var tr = data;
+
+			//console.log('translations', tr)
+
+			$translateProvider.translations('en', tr.en);
+
+			$translateProvider.translations('fr', tr.fr);
+
+			$translateProvider.translations('es', tr.es);
+
+			$translateProvider.preferredLanguage('en');
+		}
+		);
+
+
+}]);
 
 var meDATA = [];
 var selectedOptionsOU;
@@ -23,7 +56,7 @@ var apiUrlMetadata = "../../metadata";
 var apiUrlUIDGenerate = "../../system/id.json?limit=10";
 
 //url for fecth config params
-var apiUrlConfig = "../../dataStore/dxdataTransfer/settings2";
+var apiUrlConfig = "../../dataStore/dxdataTransfer/settings";
 
 //url for fecth schemas
 var apiUrlSchemas = "../../schemas.json?paging=false";
@@ -32,7 +65,7 @@ var apiUrlSchemas = "../../schemas.json?paging=false";
 var apiUrlResource = "../../resources.json?paging=false";
 
 //url for fecth resources
-var settingsKeys = ['ouMapping', 'targetServer', 'itemMapping', 'comboMapping'];
+var settingsKeys = ['ouMapping', 'targetServer', 'itemMapping'];
 
 var logins = [];
 
@@ -45,22 +78,25 @@ var dTable = new Array();
 
 var isDeResultFound = false;
 
-app.controller('menuController', function ($rootScope, $http) {
+app.controller('menuController', function ($rootScope, $http, $translate) {
 	// check admin for menu 
 
 	$http({ method: 'get', url: "../../me?fields=:all,userCredentials[userRoles[authorities]]" })
-		.success(function (data) {
-			console.log(" login success");
-			meDATA = data;
+		.then(function (response) {
+			//console.log(" login success");
+			meDATA = response.data;
+			
+			userLang = meDATA.settings.keyUiLocale;
+			console.log('userLang',userLang)
+			$translate.use(userLang);
 
 			// check admin for menu 
 			function checkVal(val) { return val == 'ALL'; }
 			u = meDATA.userCredentials.userRoles;
 			$rootScope.superUser = false;
 			for (var i = 0; i < u.length; i++) { if (u[i].authorities.some(checkVal)) { $rootScope.superUser = true } }
-			console.log('superUser: ' + $rootScope.superUser);
-		})
-		.error(function (data) {
+			//console.log('superUser: ' + $rootScope.superUser);
+		}),(function (response) {
 			console.log(" login failed"); // modalAlert
 		});
 
@@ -74,12 +110,13 @@ app.controller('menuController', function ($rootScope, $http) {
 		$rootScope.disableContent = true;
 	}
 
-	$http.get(apiUrl2).then(function (response) {
+	$http.get(apiUrlConfig)
+	.then(function (response) {
 		if (!response.data == "") {
 			$rootScope.disableContent = false;
-			console.log("initDatastore exist ! ");
+			//console.log("initDatastore exist ! ");
 			settingsKeys.forEach(function (item) {
-				if (!response.data.hasOwnProperty(item)) {
+				if (!response.data.instances[0].hasOwnProperty(item)) {
 					alertAdmin();
 					//break;
 				}
@@ -88,7 +125,7 @@ app.controller('menuController', function ($rootScope, $http) {
 			Object.keys(response.data).forEach(function (k) {
 				// console.log(key, data[key]);
 				if (response.data[k] === '') {
-					console.log("CheckLmisDatastore: " + k);
+					//console.log("CheckLmisDatastore: " + k);
 					alertAdmin();
 				}
 			});
@@ -103,18 +140,18 @@ app.controller('menuController', function ($rootScope, $http) {
 	};
 });
 
+var clp = "5AV<wpN$|9p_}?Sz";
 // init variables	
 var datastoreJson = {
-	"targetServer": { "pwd": "", "url": "", "user": "" },
-	"ouMapping": [],
-	"itemMapping": [],
-	"comboMapping": [],
-	"options": {
-		"periodType": "weekly",
-		"oulevel": "3"
-	},
-	"lastSummary": {},
-	"lastSyncDate": "2020-01-01"
+"instances":[
+/*	{
+		"targetServer": { "pwd": "", "url": "", "user": "" },
+		"ouMapping": [],"itemMapping": [],
+		"comboMapping": [],	"options": {"periodType": "", "ouLevel": ""	},
+		"lastSummary": {}, "lastSyncDate": ""
+	}
+*/
+  ]
 };
 
 

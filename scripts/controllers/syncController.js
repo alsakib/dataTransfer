@@ -6,21 +6,22 @@ var dataTosend = [];
 app.controller('syncController', function ($rootScope, $http) {
 	$rootScope.selectedOptions = [];
 	$rootScope.dataTosend = {};
-	$rootScope.dataTosendFinal = {};
+	$rootScope.dataTosendFinal = {}; 
 	$rootScope.importSummary = {};
+	$rootScope.Cumulative = false;
 
 	//test si serveur connecté / recuperer données sur l'utilisateur , headers: header 
 
 	$http({ method: 'get', url: "../../me?fields=:all,userCredentials[userRoles[authorities]]" })
-		.success(function (data) {
-			console.log(data);
-			console.log(" login success");
-			meDATA = data;
+		.then(function (response) {
+			//console.log(data);
+			//console.log(" login success");
+			meDATA = response.data;
 			//console.log( "dataViewOrganisationUnits " + meDATA.dataViewOrganisationUnits[0].id);
 			if (meDATA.dataViewOrganisationUnits === undefined || meDATA.dataViewOrganisationUnits.length == 0) {
 				$http({ method: 'get', url: "../../organisationUnits?level=1&fields=id" })
-					.success(function (data) {
-						ouUser = data.organisationUnits[0].id;
+					.then(function (response) {
+						ouUser = response.data.organisationUnits[0].id;
 						console.log("ouUserlEVEL1 " + ouUser);
 						fonc_recuperOU($rootScope, $http, ouUser);
 						selectedOptionsOU = ouUser;
@@ -33,7 +34,7 @@ app.controller('syncController', function ($rootScope, $http) {
 					});
 			} else {
 				ouUser = meDATA.dataViewOrganisationUnits[0].id;
-				console.log("ouUser " + ouUser);
+				//console.log("ouUser " + ouUser);
 				fonc_recuperOU($rootScope, $http, ouUser);
 				selectedOptionsOU = ouUser;
 				fetchData($rootScope, $http, ouUser);
@@ -48,8 +49,7 @@ app.controller('syncController', function ($rootScope, $http) {
 			//if (u[i].authorities.some(checkVal)){ $rootScope.superUser=true}
 			//}
 			//console.log('superUser: '+$rootScope.superUser); 
-		})
-		.error(function (data) {
+		}),(function (data) {
 			console.log(data);
 			console.log(" login failed");
 			// modalAlert				
@@ -120,14 +120,14 @@ app.controller('syncController', function ($rootScope, $http) {
 		//selectedItemGet();
 		//oulevel = $("#ouLevelList").val();
 		$http({ method: 'get', url: '../../organisationUnits.json?level=1&fields=id,displayName~rename(name),code' })
-			.success(function (data) { selectedOptionsOU = data.organisationUnits[0].id })
-			.error(function (data) { console.log(data); });
-		oulevel = $rootScope.settings.options.oulevel;
-		$rootScope.selectedItems = $rootScope.settings.itemMapping.map(function (e) { return e.srcUID }).join(";");
+			.then(function (response) { selectedOptionsOU = response.data.organisationUnits[0].id }),
+			(function (response) { console.log(response); });
+		oulevel = $rootScope.instance.options.ouLevel;
+		$rootScope.selectedItems = $rootScope.instance.itemMapping.map(function (e) { return e.srcUID }).join(";");
 		console.log('selectedItems', selectedOptionsOU, $rootScope.selectedItems, selectedOptionsPE, oulevel);
 		getData($rootScope, $http, selectedOptionsOU, $rootScope.selectedItems, selectedOptionsPE, oulevel);
 
-		console.log('processing', oulevel);
+		//console.log('processing', oulevel);
 
 		//pushData($rootScope, $http);
 		$("#loader").show();
@@ -174,9 +174,12 @@ app.controller('syncController', function ($rootScope, $http) {
 	$('#instance').change(function () {
 		productList = [];
 		instanceSelected = $("#instance option:selected").val();
-		$("#selectedOptsProd").html($("#groupMetaList option:selected").text());
-		console.log('instanceSelected', instanceSelected, $rootScope.settings.instances[instanceSelected].options.periodType);
-		typePeriod = $rootScope.settings.instances[instanceSelected].options.periodType;
+		$("#selectedOptsProd").html($("#groupMetaList option:selected").text());		
+		$rootScope.instance = $rootScope.settings.instances.filter(function (i) { return i.id == instanceSelected })[0];
+//$rootScope.instance = $rootScope.settings.instances[instanceSelected];
+		typePeriod = $rootScope.instance.options.periodType;
+		console.log('instanceSelected', instanceSelected, typePeriod);
+
 		//$("#peType").change();
 		load_period(typePeriod, yyyy, language);
 	});
@@ -250,8 +253,8 @@ fonc_recuperOU = function ($rootScope, $http, ou) {
 				}
 			});
 
-			console.log("test http UO : ");
-			console.dir(response.data);
+			//console.log("test http UO : ");
+			//console.dir(response.data);
 		})
 
 }
@@ -268,7 +271,7 @@ function fetchData($rootScope, $http, ouUser) {
 	$rootScope.settings = {}; $rootScope.targetServer = {};
 	var promise = $http.get(apiUrlConfig).then(function (response) {
 		if (!response.data == "")
-			console.log('response.data', response.data);
+			//console.log('response.data', response.data);
 		$rootScope.settings = response.data;
 		$rootScope.targetServer = $rootScope.settings.targetServer;
 		Util.populateSelect($('#instance'), "Instance", $rootScope.settings.instances);
@@ -276,17 +279,17 @@ function fetchData($rootScope, $http, ouUser) {
 		{
 
 			$http({ method: 'get', url: '../../indicatorGroups.json?paging=false&fields=id,displayName~rename(name),code' })
-				.success(function (data) { Util.populateSelect($('#groupMetaList'), "Groupe", data.indicatorGroups); })
-				.error(function (data) { console.log(data); });
+				.then(function (response) { Util.populateSelect($('#groupMetaList'), "Groupe", response.data.indicatorGroups); })
+				,(function (response) { console.log(data); });
 
 			$http({ method: 'get', url: '../../organisationUnitLevels.json?paging=false&fields=displayName~rename(name),level~rename(id)&order=level:asc' })
-				.success(function (data) { Util.populateSelect($('#ouLevelList'), "Groupe", data.organisationUnitLevels); })
-				.error(function (data) { console.log(data); });
+				.then(function (response) { Util.populateSelect($('#ouLevelList'), "Groupe", response.data.organisationUnitLevels); }),
+				(function (response) { console.log(response); });
 
 			$http.get("../../indicators.json?paging=false&fields=id,displayName~rename(name),code").then(function (response) {
 				if (!response.data == "") {
 					productList = response.data.indicators;
-					console.log("metaChoosen ok ! ");
+				//	console.log("metaChoosen ok ! ");
 					//console.log(productList);
 					Util.populateSelect($('#metaChoosen'), "recherche [Produit]", response.data.indicators);
 					printTable(productList);
@@ -330,8 +333,8 @@ function printTable(metadataList) {
 	var index = 0;
 	var dTable = [];
 	var essentiel = "";
-	console.log("metadataList.length: ", metadataList.length);
-	console.log("metadataList[]", metadataList);
+	//console.log("metadataList.length: ", metadataList.length);
+	//console.log("metadataList[]", metadataList);
 
 	if (metadataList != "") {
 		metadataList.forEach(function (hs) {
@@ -408,10 +411,10 @@ function getData($rootScope, $http, ouID, UIDs, periods, level) {
 		if (!response.data == "") {
 			$rootScope.dataTosend = response.data;
 			dataTosend = response.data;
-			console.log('getData', $rootScope.dataTosend, $rootScope.settings.itemMapping);
+			//console.log('getData', $rootScope.dataTosend, $rootScope.instance.itemMapping);
 
 			//transfromDATA($rootScope, $http, srcUIDS);
-			transfromDATA($rootScope, $http, $rootScope.dataTosend, $rootScope.settings.itemMapping, $rootScope.settings.ouMapping, $rootScope.dataTosendFinal, ljson_nontrouve);
+			transfromDATA($rootScope, $http, $rootScope.dataTosend, $rootScope.instance.itemMapping, $rootScope.instance.ouMapping, $rootScope.dataTosendFinal, ljson_nontrouve);
 
 
 		}
@@ -422,8 +425,12 @@ function getData($rootScope, $http, ouID, UIDs, periods, level) {
 }
 
 function updateConfig($rootScope, $http) {
-	var settingsJson = $rootScope.settings;
-	$http.put(apiUrlConfig, settingsJson, { headers: { 'Content-Type': 'application/json;charset=utf-8' } })
+	var settingsJson = $rootScope.instance;
+	//$rootScope.settings.instances.splice($rootScope.instance.id, 1, $rootScope.instance);
+	
+	const indx = $rootScope.settings.instances.findIndex(i => i.id == $rootScope.instance.id);
+	$rootScope.settings.instances.splice(indx, 1, $rootScope.instance)
+	$http.put(apiUrlConfig, $rootScope.settings, { headers: { 'Content-Type': 'application/json;charset=utf-8' } })
 		.then(function (response) {
 			//g = $rootScope.settings.groupForms.reverse();
 			//console.log('groupForms',$rootScope.settings.groupForms,g);
@@ -436,11 +443,14 @@ function updateConfig($rootScope, $http) {
 function pushData($rootScope, $http, _data) {
 	console.log('pushDATA');
 	//var auth = $base64.encode($rootScope.targetServer.login+":"+$rootScope.targetServer.pwd); 
-	var auth = window.btoa($rootScope.settings.targetServer.user + ":" + $rootScope.settings.targetServer.pwd);
-	//console.log('auth', auth);
+	$rootScope.targetServer = $rootScope.instance.targetServer;
+		let pwd = CryptoJS.AES.decrypt($rootScope.instance.targetServer.pwd, clp).toString(CryptoJS.enc.Utf8);
+
+	var auth = window.btoa($rootScope.instance.targetServer.user + ":" + pwd);
+	//console.log('auth', $rootScope.instance.targetServer.user, pwd);
 	headers = { "Authorization": "Basic " + auth };
-	url = $rootScope.settings.targetServer.url + '/api/dataValueSets';
-	console.log('targetServerURL', url);
+	url = $rootScope.instance.targetServer.url + '/api/dataValueSets';
+	//console.log('targetServerURL', url);
 	data = _data;
 	$rootScope.processStatut = 'Data Sending...';
 	$http.post(url, data, { headers: headers }).then(function (response) {
@@ -450,8 +460,8 @@ function pushData($rootScope, $http, _data) {
 			console.log("data Sent ! ");
 			$rootScope.processStatut = 'Data Sent ! ';
 			$rootScope.importSummary = response.data;
-			$rootScope.settings.lastSummary = response.data;
-			$rootScope.settings.lastSyncDate = moment().format('YYYY-MM-DD');;
+			$rootScope.instance.lastSummary = response.data;
+			$rootScope.instance.lastSyncDate = moment().format('YYYY-MM-DD');;
 			updateConfig($rootScope, $http);
 			$("#loader").hide();
 			$("#summary").show();
@@ -495,7 +505,7 @@ var ljson_trouve = {};
 var ljson_nontrouve = {};
 
 function transfromDATA($rootScope, $http, json_sourcea, json_mapDX, json_mapOU, json_trouve, json_nontrouve) {
-	console.log("json_sourcea", json_sourcea);
+	//console.log("json_sourcea", json_sourcea);
 
 	json_trouve.dataValues = [];
 	json_nontrouve.dataValues = [];
@@ -503,15 +513,40 @@ function transfromDATA($rootScope, $http, json_sourcea, json_mapDX, json_mapOU, 
 	$rootScope.processStatut = 'Data Mapping...';
 	//	if (json_trouve.dataValues.length > 0) {
 	json_trouve = Object.assign({}, json_sourcea);
+/*
+	json_mapDX.forEach(function (e) {
+
+		var pattern = new RegExp(e.srcUID, 'gi');
+		var comment = 'data Sync';
+		var deCoc ='';
+var coc = undefined;
+var pattern = new RegExp('Vcpqm1VY9Tg', 'gi');
+		//var trgUID = "l0W02smRIg9"+ "\&quot;categoryOptionCombo\&quot;:\&quot;"+"nNdcoGkr6B2" +"\&quot;,";
+
+		deCoc = e.trgUID;
+   if (e.trgCOC !== undefined) { deCoc = e.trgUID + '\",\"categoryOptionCombo\":\"' + e.trgCOC } else {  deCoc = e.trgUID}
+
+		if (Array.isArray(json_trouve.dataValues) && json_trouve.dataValues.length !== 0) {
+		json_trouve.dataValues = JSON.parse(JSON.stringify(json_trouve.dataValues).replace(pattern, deCoc).replace(/aggregated/g, 'data_Synced').replace(/\.0/g, ''));
+		} else { console.log('No data Found') };
+		//console.log("json_trouve dx", json_trouve);
+
+		return 0
+	});
+	*/
 	json_mapDX.forEach(function (e) {
 
 		var pattern = new RegExp(e.srcUID, 'gi');
 		var trgUID = e.trgUID;
 		var comment = 'data Sync';
+		var deCoc ='';
+		var coc = undefined;
 		//console.log("pattern", e.srcUID, trgUID);
-		//if (Array.isArray(json_trouve.dataValues) && json_trouve.dataValues.length !== 0) {
-		json_trouve.dataValues = JSON.parse(JSON.stringify(json_trouve.dataValues).replace(pattern, trgUID).replace(/aggregated/g, 'data_Synced').replace(/\.0/g, ''));
-		//} else { console.log('No data Found') };
+		if (e.trgCOC !== undefined) { deCoc = e.trgUID + '\",\"categoryOptionCombo\":\"' + e.trgCOC } else {  deCoc = e.trgUID}
+		if (Array.isArray(json_trouve.dataValues) && json_trouve.dataValues.length !== 0) {
+		json_trouve.dataValues = JSON.parse(JSON.stringify(json_trouve.dataValues).replace(pattern, deCoc).replace(/aggregated/g, 'data_Synced').replace(/\.0/g, ''));
+		} else { console.log('No data Found') 
+		$rootScope.processStatut = 'No data Found';};
 		//console.log("json_trouve dx", json_trouve);
 
 		return 0
@@ -520,18 +555,18 @@ function transfromDATA($rootScope, $http, json_sourcea, json_mapDX, json_mapOU, 
 
 		var pattern = new RegExp(e.srcUID, 'gi');
 		var trgUID = e.trgUID;
-		var comment = 'data Sync';
+		//var comment = 'data Sync';
 		//console.log("pattern", e.srcUID, trgUID);
 		//json_trouve.dataValues = JSON.parse(JSON.stringify(json_trouve.dataValues).replace(pattern, trgUID));
 		//console.log("json_trouve OU", json_trouve);
-		//if (Array.isArray(json_trouve.dataValues) && json_trouve.dataValues.length !== 0) {
+		if (Array.isArray(json_trouve.dataValues) && json_trouve.dataValues.length !== 0) {
 		json_trouve.dataValues = JSON.parse(JSON.stringify(json_trouve.dataValues).replace(pattern, trgUID));
-		//} else { console.log('No data Found') };
+		} else { $rootScope.processStatut = 'No data Found'};
 		return 0
 	});
-	console.log("json_data_init", json_sourcea);
-	console.log("json_data_trouve", json_trouve);
-	console.log("json_data_nontrouve", json_nontrouve);
+	//console.log("json_data_init", json_sourcea);
+	//console.log("json_data_trouve", json_trouve);
+	//console.log("json_data_nontrouve", json_nontrouve);
 	pushData($rootScope, $http, json_trouve);
 	//	} else { console.log('No data Found to be sent !'); 	$rootScope.processStatut = 'No data Found to be sent !';	};
 
