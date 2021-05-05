@@ -1,0 +1,33 @@
+{
+	"en": {
+		"Dashboard": "Dashboard",
+		"Entry": "Data entry",
+		"Dataset": "Dataset",
+		"Metadonnées": "Metadata"
+	},
+	"fr": {
+		"Dashboard": "Tableau de bord",
+		"Confirm": "Confirmation enregistrement",
+		"No": "Non",
+		"Yes": "Oui",
+		"Save configuration": "Etes vous sur d'enregistrer ces modifications?",
+		"Metadonnées": "Métadonnées",
+		"orgunits":"Unités d'organisation",
+		"Apply":"Enregistrer",
+		"Process": "Executer",
+		"Sync Summary": "Resultat synchronisation",
+		"Imported": "Importé",
+		"Updated": "Mis à jour",
+		"Ignored": "Ignoré",
+		"Deleted": "Supprimé",
+		"Data sync":"Synchronisation",
+		"Config":"Configuration",
+		"About":"A propos",
+		"Download":"Télécharger",
+		"indicators/Program Indicators => DataSets":"Indicateurs/Indicateurs programme => Formulaires"
+	},
+	"es": {
+		"Dashboard": "Tablero de mandos",
+		"Entry": "Entrada de datos"
+	}
+}

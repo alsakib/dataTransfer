@@ -1,0 +1,589 @@
+{
+    "options": {
+      "oulevel": "3",
+      "periodType": "weekly"
+    },
+    "ouMapping": [
+      {
+        "srcUID": "hKxdzxZ4WFX",
+        "trgUID": "wryMP8p8k1C",
+        "srcName": "Bird District",
+        "trgName": "Bird District"
+      },
+      {
+        "srcUID": "iZQRc4CWmIr",
+        "trgUID": "VCLAcayLVyx",
+        "srcName": "Dog District",
+        "trgName": "Dog District"
+      },
+      {
+        "srcUID": "vav3peUGYbC",
+        "trgUID": "PR3HRX1IEBj",
+        "srcName": "Cat District",
+        "trgName": "Cat District"
+      },
+      {
+        "srcUID": "WZBBfmci0Hi",
+        "trgUID": "WZBBfmci0Hi",
+        "srcName": "Dinner District",
+        "trgName": "Dinner District"
+      }
+    ],
+    "periodInit": "2010-01-01",
+    "itemMapping": [
+      {
+        "srcUID": "VN7pFfeVXba",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "XRFwVZNgo0p",
+        "srcName": "Actual_Reports",
+        "trgName": "Actual_Reports"
+      },
+      {
+        "srcUID": "JtnZyeExDnc",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "WpKu7cyd7Zo",
+        "srcName": "Actual_Reports_on_time",
+        "trgName": "Actual_Reports_on_time"
+      },
+      {
+        "srcUID": "RKRtOnjvzsZ",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "P666FBECG0N",
+        "srcName": "Acute Flacid Paralysis (Deaths)",
+        "trgName": "Acute Flacid Paralysis (Deaths)"
+      },
+      {
+        "srcUID": "z5jMXJUjwE3",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "qYJ3YYLADtz",
+        "srcName": "Acute Flacid Paralysis (Suspected cases)",
+        "trgName": "Acute Flacid Paralysis (Suspected cases)"
+      },
+      {
+        "srcUID": "eX8kVT3oRoc",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "bXn9Kmxnd3r",
+        "srcName": "Acute watery diarrhoea (Deaths)",
+        "trgName": "Acute watery diarrhoea (Deaths)"
+      },
+      {
+        "srcUID": "hQlQCMJVGm5",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "flD9dHHw3Wl",
+        "srcName": "Acute watery diarrhoea (Suspected cases)",
+        "trgName": "Acute watery diarrhoea (Suspected cases)"
+      },
+      {
+        "srcUID": "G3hmodqXksf",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "wGj6xfXBaxs",
+        "srcName": "Anthrax (Deaths)",
+        "trgName": "Anthrax (Deaths)"
+      },
+      {
+        "srcUID": "PHZVCOOFSxM",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "qrSwfzR61l0",
+        "srcName": "Anthrax (Suspected cases)",
+        "trgName": "Anthrax (Suspected cases)"
+      },
+      {
+        "srcUID": "olyDHtjqsVu",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "miZ7nLeBp1w",
+        "srcName": "Cholera (Deaths)",
+        "trgName": "Cholera (Deaths)"
+      },
+      {
+        "srcUID": "hjLcTJkb2v0",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "Sc5efRwnOA9",
+        "srcName": "Cholera (Suspected cases)",
+        "trgName": "Cholera (Suspected cases)"
+      },
+      {
+        "srcUID": "eF3kvrEC92b",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "vd4GxqtKkRC",
+        "srcName": "Dengue Fever (Deaths)",
+        "trgName": "Dengue Fever (Deaths)"
+      },
+      {
+        "srcUID": "hKxdzxZ4WFX",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "wryMP8p8k1C",
+        "srcName": "Dengue Fever (Suspected cases)",
+        "trgName": "Dengue Fever (Suspected cases)"
+      },
+      {
+        "srcUID": "vttjnYc5gmZ",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "ddGAKVfTvlQ",
+        "srcName": "Diarrhoea with blood (Shigella)- Deaths",
+        "trgName": "Diarrhoea with blood (Shigella)- Deaths)"
+      },
+      {
+        "srcUID": "DZeudzA82MM",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "juTM5EM0Jo0",
+        "srcName": "Diarrhoea with blood (Shigella)- Suspected cases)",
+        "trgName": "Diarrhoea with blood (Shigella)- Suspected cases)"
+      },
+      {
+        "srcUID": "QRzHPqj6T8j",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "xfkxDz03AFK",
+        "srcName": "Diphteria (Deaths)",
+        "trgName": "Diphteria (Deaths)"
+      },
+      {
+        "srcUID": "j33w6nNEKnL",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "Hrsq0RqGFKO",
+        "srcName": "Diphteria (Suspected cases)",
+        "trgName": "Diphteria (Suspected cases)"
+      },
+      {
+        "srcUID": "VEwTo9pxktu",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "GPYSN5lacmj",
+        "srcName": "Dracunculiasis (Deaths)",
+        "trgName": "Dracunculiasis (Deaths)"
+      },
+      {
+        "srcUID": "bBHXT6w6ALO",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "Y0hLSnQE8IV",
+        "srcName": "Dracunculiasis (Suspected cases)",
+        "trgName": "Dracunculiasis (Suspected cases)"
+      },
+      {
+        "srcUID": "m9GkAe97w2p",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "v1n8aztMcYN",
+        "srcName": "Expected_reports",
+        "trgName": "Expected_reports"
+      },
+      {
+        "srcUID": "clKgNLbcRAp",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "WTdHe8OEt1q",
+        "srcName": "Influenza-Like Illness (Deaths)",
+        "trgName": "Influenza-Like Illness (Deaths)"
+      },
+      {
+        "srcUID": "OAaX0TBYliv",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "joqqWUXl47C",
+        "srcName": "Influenza-Like Illness (Suspected cases)",
+        "trgName": "Influenza-Like Illness (Suspected cases)"
+      },
+      {
+        "srcUID": "ZZ22mApkgIo",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "qNsd9cPWNVo",
+        "srcName": "Measles/rubella (Deaths)",
+        "trgName": "Measles/rubella (Deaths)"
+      },
+      {
+        "srcUID": "vav3peUGYbC",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "PR3HRX1IEBj",
+        "srcName": "Measles/rubella (Suspected cases)",
+        "trgName": "Measles/rubella (Suspected cases)"
+      },
+      {
+        "srcUID": "bsDMS2hPESS",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "UXtfpFrG53k",
+        "srcName": "Meningitis (CSF contam)",
+        "trgName": "Meningitis (CSF contam)"
+      },
+      {
+        "srcUID": "Nb9CVapWdVE",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "RGmtcR1mcfn",
+        "srcName": "Meningitis (CSF negative)",
+        "trgName": "Meningitis (CSF negative)"
+      },
+      {
+        "srcUID": "CmQc4v3pzdU",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "K2Ky3gBe2sB",
+        "srcName": "Meningitis (Deaths)",
+        "trgName": "Meningitis (Deaths)"
+      },
+      {
+        "srcUID": "T2H2TbUBrDY",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "IwElS2y8uzq",
+        "srcName": "Meningitis (GBS)",
+        "trgName": "Meningitis (GBS)"
+      },
+      {
+        "srcUID": "YrI7hQQadTD",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "e27MJXqMPAW",
+        "srcName": "Meningitis (Hib)",
+        "trgName": "Meningitis (Hib)"
+      },
+      {
+        "srcUID": "nn2oCQFZTTc",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "Nj943YZm5J0",
+        "srcName": "Meningitis (In process)",
+        "trgName": "Meningitis (In process)"
+      },
+      {
+        "srcUID": "oZ3ZiT58hBr",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "D5nYQAs4YYN",
+        "srcName": "Meningitis (Nm W)",
+        "trgName": "Meningitis (Nm W)"
+      },
+      {
+        "srcUID": "aukwaj2kyvN",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "I0hSJHycgzT",
+        "srcName": "Meningitis (NmA)",
+        "trgName": "Meningitis (NmA)"
+      },
+      {
+        "srcUID": "eAyOBfJrs3r",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "LszjUZCLWP2",
+        "srcName": "Meningitis (NmB)",
+        "trgName": "Meningitis (NmB)"
+      },
+      {
+        "srcUID": "ndbZtM8GymS",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "McxtlIwrSYl",
+        "srcName": "Meningitis (NmC)",
+        "trgName": "Meningitis (NmC)"
+      },
+      {
+        "srcUID": "T7JZ2VvrHI7",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "ZcuZSS8QHOg",
+        "srcName": "Meningitis (NmX)",
+        "trgName": "Meningitis (NmX)"
+      },
+      {
+        "srcUID": "HpCrcujsxpP",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "paABbIxQ6fI",
+        "srcName": "Meningitis (NmY)",
+        "trgName": "Meningitis (NmY)"
+      },
+      {
+        "srcUID": "TbLWFPUyRK1",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "LNOSbgZiqaJ",
+        "srcName": "Meningitis (Number CSF)",
+        "trgName": "Meningitis (Number CSF)"
+      },
+      {
+        "srcUID": "Jg4ZtqaQHTy",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "BYXzAABOEbr",
+        "srcName": "Meningitis (Other Nm ind.)",
+        "trgName": "Meningitis (Other Nm ind.)"
+      },
+      {
+        "srcUID": "WpC4r43PwBr",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "J0s9X6GHsOi",
+        "srcName": "Meningitis (Other Pathogen)",
+        "trgName": "Meningitis (Other Pathogen)"
+      },
+      {
+        "srcUID": "Krl87NwzrzS",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "m2afIjMnymV",
+        "srcName": "Meningitis (S. pneumoniae)",
+        "trgName": "Meningitis (S. pneumoniae)"
+      },
+      {
+        "srcUID": "TdxvdtbHsGa",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "KUuKOtxzBJ1",
+        "srcName": "Meningitis (Suspected cases)",
+        "trgName": "Meningitis (Suspected cases)"
+      },
+      {
+        "srcUID": "kR3X4SZFhLR",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "qAM23M0qOId",
+        "srcName": "Neonatal Tetanus (Deaths)",
+        "trgName": "Neonatal Tetanus (Deaths)"
+      },
+      {
+        "srcUID": "QYI4OsZ0MXt",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "lTiuuQij9HP",
+        "srcName": "Neonatal Tetanus (Suspected cases)",
+        "trgName": "Neonatal Tetanus (Suspected cases)"
+      },
+      {
+        "srcUID": "xtky4S0uHGJ",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "dKzr3MsO9kG",
+        "srcName": "Non Neonatal tetanus (Deaths)",
+        "trgName": "Non Neonatal tetanus (Deaths)"
+      },
+      {
+        "srcUID": "SDaGmAx4Tna",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "PIeQekpD664",
+        "srcName": "Non Neonatal tetanus (Suspected cases)",
+        "trgName": "Non Neonatal tetanus (Suspected cases)"
+      },
+      {
+        "srcUID": "PJIL3Utok2F",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "bHSkKIwVBay",
+        "srcName": "Pertussis (Deaths)",
+        "trgName": "Pertussis (Deaths)"
+      },
+      {
+        "srcUID": "K5SVUv3lStz",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "ClUDerxOIWR",
+        "srcName": "Pertussis (Suspected cases)",
+        "trgName": "Pertussis (Suspected cases)"
+      },
+      {
+        "srcUID": "fajwNPsupHJ",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "qqqAULiKFu2",
+        "srcName": "Plague (Deaths)",
+        "trgName": "Plague (Deaths)"
+      },
+      {
+        "srcUID": "jTtMVb8GAIH",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "rl1SLaRmaZ4",
+        "srcName": "Plague (Suspected cases)",
+        "trgName": "Plague (Suspected cases)"
+      },
+      {
+        "srcUID": "ZQ7MjGLGBRi",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "n1iUA7kb0wj",
+        "srcName": "Rabies (Deaths)",
+        "trgName": "Rabies (Deaths)"
+      },
+      {
+        "srcUID": "XIMXNswD8Ah",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "lo0rfBSWDbf",
+        "srcName": "Rabies (Suspected cases)",
+        "trgName": "Rabies (Suspected cases)"
+      },
+      {
+        "srcUID": "q25AwL80kYJ",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "hi5J0vMBrbE",
+        "srcName": "Viral hemorrhagic fever (Deaths)",
+        "trgName": "Viral hemorrhagic fever (Deaths)"
+      },
+      {
+        "srcUID": "Bc74DE5XBEp",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "FMM88mSULsl",
+        "srcName": "Viral hemorrhagic fever (Suspected cases)",
+        "trgName": "Viral hemorrhagic fever (Suspected cases)"
+      },
+      {
+        "srcUID": "VT7WZlgGtx0",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "sjd8VtIZxmz",
+        "srcName": "Yellow Fever (Deaths)",
+        "trgName": "Yellow Fever (Deaths)"
+      },
+      {
+        "srcUID": "WND2T40z1d1",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "Q1xDDDusLwl",
+        "srcName": "Yellow Fever (Suspected cases)",
+        "trgName": "Yellow Fever (Suspected case)"
+      },
+      {
+        "srcUID": "WND2T40z1d1",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "Q1xDDDusLwl",
+        "srcName": "Yellow Fever (Suspected cases)",
+        "trgName": "Yellow Fever (Suspected case)"
+      },
+      {
+        "srcUID": "rbnCYeVsf99",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "KY2gR9npnfP",
+        "srcName": "Acute Flacid Paralysis (confirmed cases VDPV)",
+        "trgName": "Acute Flacid Paralysis (confirmed case VDPV)"
+      },
+      {
+        "srcUID": "hdZoVVTIqAB",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "b0IzLHcVdm0",
+        "srcName": "Acute Flacid Paralysis (confirmed cases WPV)",
+        "trgName": "Acute Flacid Paralysis (confirmed case WPV)"
+      },
+      {
+        "srcUID": "pVGPPQO2l5a",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "AAwOFcp7xdd",
+        "srcName": "Anthrax (Confirmed cases)",
+        "trgName": "Anthrax (Confirmed cases)"
+      },
+      {
+        "srcUID": "SDTCkYf3yty",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "FTWXeWdPdVH",
+        "srcName": "Cholera (Confirmed cases)",
+        "trgName": "Cholera (Confirmed cases)"
+      },
+      {
+        "srcUID": "V6hrsxzaRWa",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "unXcJLrNYNe",
+        "srcName": "Dengue Fever (Confirmed cases)",
+        "trgName": "Dengue Fever (Confirmed cases)"
+      },
+      {
+        "srcUID": "Gazfp4C0d0g",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "jxvt8LFSx8e",
+        "srcName": "Diarrhoea with blood (Shigella)- Confirmed cases)",
+        "trgName": "Diarrhoea with blood (Shigella)- Confirmed cases)"
+      },
+      {
+        "srcUID": "cQEzLU5zHVR",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "X4gFcPKQ8Cw",
+        "srcName": "Diphteria (Confirmed cases)",
+        "trgName": "Diphteria (Confirmed cases)"
+      },
+      {
+        "srcUID": "aFfdM1c5sRa",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "st1ejfpSRo7",
+        "srcName": "Dracunculiasis (Confirmed cases)",
+        "trgName": "Dracunculiasis (Confirmed cases)"
+      },
+      {
+        "srcUID": "iZQRc4CWmIr",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "VCLAcayLVyx",
+        "srcName": "Influenza-Like Illness (Confirmed cases)",
+        "trgName": "Influenza-Like Illness (Confirmed cases)"
+      },
+      {
+        "srcUID": "VYk6cMXgCY9",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "yMlASPYVU2v",
+        "srcName": "Measles (Confirmed cases)",
+        "trgName": "Measles (Confirmed cases)"
+      },
+      {
+        "srcUID": "hHsJACKkI5f",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "RAQCr5DpCzC",
+        "srcName": "Pertussis (Confirmed cases)",
+        "trgName": "Pertussis (Confirmed cases)"
+      },
+      {
+        "srcUID": "uYw7H8L6Zme",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "iuh5hm4RVBR",
+        "srcName": "Plague (Confirmed cases)",
+        "trgName": "Plague (Confirmed cases)"
+      },
+      {
+        "srcUID": "D4ChC06lIXi",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "MbAkHOTlcyp",
+        "srcName": "Rabies (Confirmed cases)",
+        "trgName": "Rabies (Confirmed cases)"
+      },
+      {
+        "srcUID": "fxF64ipVSq8",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "rVi7C4a14jp",
+        "srcName": "Rubella (Confirmed cases)",
+        "trgName": "Rubella (Confirmed cases)"
+      },
+      {
+        "srcUID": "P0G458GzYBz",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "ezlLC4UCA2g",
+        "srcName": "Viral hemorrhagic fever (Confirmed cases)",
+        "trgName": "Viral hemorrhagic fever (Confirmed cases)"
+      },
+      {
+        "srcUID": "ffNQctZ9uxd",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "I11IpNMGxaR",
+        "srcName": "Yellow Fever (Confirmed cases)",
+        "trgName": "Yellow Fever (Confirmed case)"
+      },
+      {
+        "srcUID": "h7bxqdKWYCa",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "DkmMEcubiPv",
+        "srcName": "GEN - Population total",
+        "trgName": "GEN - Population"
+      },
+      {
+        "srcUID": "onTdlaF4eFF",
+        "trgCOC": "HllvX50cXC0",
+        "trgUID": "k2hYvS8LTFl",
+        "srcName": "TB - TB treatment success rate (new and relapse DS-TB/HIV) (%)",
+        "trgName": "IDSR - AWD Alert"
+      }
+    ],
+    "lastSummary": {
+      "status": "ERROR",
+      "description": "The import process failed: Failed to create statement",
+      "importCount": {
+        "deleted": 0,
+        "ignored": 0,
+        "updated": 0,
+        "imported": 0
+      },
+      "responseType": "ImportSummary",
+      "importOptions": {
+        "async": false,
+        "force": false,
+        "dryRun": false,
+        "sharing": false,
+        "idSchemes": {},
+        "mergeMode": "REPLACE",
+        "skipAudit": false,
+        "reportMode": "FULL",
+        "strictPeriods": false,
+        "importStrategy": "CREATE_AND_UPDATE",
+        "skipLastUpdated": false,
+        "firstRowIsHeader": true,
+        "skipExistingCheck": false,
+        "skipNotifications": false,
+        "strictDataElements": false,
+        "datasetAllowsPeriods": false,
+        "ignoreEmptyCollection": false,
+        "skipPatternValidation": false,
+        "strictOrganisationUnits": false,
+        "requireCategoryOptionCombo": false,
+        "strictCategoryOptionCombos": false,
+        "requireAttributeOptionCombo": false,
+        "strictAttributeOptionCombos": false
+      }
+    },
+    "comboMapping": [],
+    "lastSyncDate": "2020-09-08",
+    "targetServer": {
+      "pwd": "L!h3F3$D",
+      "url": "https://ds.dev.hispuganda.org",
+      "user": "integration"
+    }
+  }

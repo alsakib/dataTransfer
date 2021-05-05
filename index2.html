@@ -24,7 +24,6 @@
 	<script type="text/javascript" src="../../../dhis-web-commons/select2/select2.min.js"></script>
 	<script type="text/javascript" src="js/jquery.toastmessage.js"></script>
 	<script type="text/javascript" src="js/lobipanel.js"></script>
-	
 
 	<!-- Stylesheets related to the menu -->
 	<link type="text/css" rel="stylesheet" href="../../../dhis-web-commons/font-awesome/css/font-awesome.min.css" />
@@ -290,7 +289,7 @@
 													<option value="" selected="selected"></option>
 												</select></br>
 											</div>
-											<div ng-if="instance == '' || instance == undefined" class="col-sm-4"
+											<div ng-hide="instance == '' || instance == undefined" class="col-sm-4"
 												ng-include="'menus/periode3.html'"> </div>
 											<div id="selectedOpts" class="pull-left btn col-sm-1 hidden">
 												<div id='selectedOptsPEs' style="display:inline">
@@ -307,7 +306,7 @@
 													class="btn btn-success" data-ng-model="btnImport" id="btnImport"
 													data-ng-click="process()"><i class="fa fa-send"
 														aria-hidden="true"></i>
-													 {{'Process' | translate}}</div>
+													Process </div>
 											</div>
 										</div><br>
 										<span class="label label-{{spanClass}}"> {{processStatut}} </span>
@@ -320,7 +319,7 @@
 								<div class="panel panel-info">
 									<div class="panel-heading">
 										<div class="panel-title">
-											<h4>{{'Sync Summary' | translate}} </h4>
+											<h4>Sync Summary</h4>
 										</div>
 									</div>
 									<div id="sitDispo" style=": 200px;" class="panel-body">
@@ -330,22 +329,22 @@
 												<h5><span class="label label-default"> Statut :
 													</span>&nbsp;&nbsp;{{importSummary.description}}</h5>
 
-												<h5>{{'Imported' | translate}}  : <span
+												<h5>imported : <span
 														class="label label-success">{{importSummary.importCount.imported}}</span>
 												</h5>
-												<h5>{{'Updated' | translate}}  : <span
+												<h5>updated : <span
 														class="label label-primary">{{importSummary.importCount.updated}}</span>
 												</h5>
-												<h5>{{'Ignored' | translate}}  : <span
+												<h5>ignored : <span
 														class="label label-info">{{importSummary.importCount.ignored}}</span>
 												</h5>
-												<h5>{{'Deleted' | translate}}  : <span
+												<h5>deleted : <span
 														class="label label-warning">{{importSummary.importCount.deleted}}</span>
 												</h5>
 											</div>
 											<div class="pull-right btn btn-info col-sm-2" id="btnImport"
 												data-ng-click="summaryDown()"><i class="fa fa-download"
-													aria-hidden="true"></i> {{'Download summary' | translate}} </div>
+													aria-hidden="true"></i> Download summary</div>
 											</br>
 										</div>
 									</div>
@@ -397,8 +396,6 @@
 
 	<!-- Angular JavaScript -->
 	<script src="js/angular.min.js"></script>
-	<script src="js/angular-route.min.js"></script>
-	<script data-require="angular-translate@*" data-semver="2.5.0" src="js/angular-translate.js"></script>
 
 	<script src="scripts/controllers/app.js"></script>
 	<script src="scripts/controllers/syncController.js"></script>
